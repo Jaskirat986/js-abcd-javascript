@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .box {
+            width: 213px;
+            height: 30px;
+            border: 1px solid black;
+            display: flex;
+
+            justify-content: end;
+        }
+
+
+
+
+
+        .button {
+            height: 30px;
+            width: 20px;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>TO DO LIST</h1>
+    <input type="text" id="todo">
+    <button id="add">ADD</button>
+    <div id="container">
+
+    </div>
+    <script>
+        let btn = document.getElementById("add");
+        let key = 0;
+        btn.addEventListener("click", () => {
+
+            let todo = document.getElementById("todo").value
+            let div = document.createElement('div');
+            div.classList.add("box");
+            container.appendChild(div);
+            key++;
+            localStorage.setItem(key, todo)
+            let p = document.createElement('p');
+            div.appendChild(p);
+            p.innerHTML = localStorage.getItem(key);
+
+            let button = document.createElement('button');
+            button.innerHTML = "X";
+            button.classList.add("button");
+            div.appendChild(button);
+            button.addEventListener('click', () => {
+                div.remove();
+
+            })
+        })
+
+    </script>
+</body>
+
+</html>

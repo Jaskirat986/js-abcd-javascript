@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .container {
+            background-color: black;
+            height: 75px;
+            width: 150px;
+            display: flex;
+        }
+
+        .box {
+            background-color: aqua;
+            color: black;
+            height: 65px;
+            width: 45px;
+            margin: 2px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div id="box1" class="box">0</div>
+        <div class="box" id="box2">0</div>
+        <div class="box" id="box3">0</div>
+    </div>
+    <button id="start">START</button>
+    <button id="stop">STOP</button>
+    <script>
+        let a;
+        let box1 = document.getElementById("box1");
+        let box2 = document.getElementById("box2");
+        let box3 = document.getElementById("box3");
+        let start = document.getElementById("start");
+        let stop = document.getElementById("stop");
+        let seconds = 0;
+        let minutes = 0;
+        let hours = 0;
+        start.addEventListener("click", () => {
+            a = setInterval(() => {
+                seconds++;
+                box3.innerHTML = seconds;
+                if (seconds >= 60) {
+                    seconds = 0;
+
+                    minutes++;
+                    box2.innerHTML = minutes;
+
+                }
+                if (minutes >= 60) {
+                    minutes = 0;
+                    hours++;
+                    box1.innerHTML = hours;
+
+                }
+            }, 1000)
+        })
+        stop.addEventListener("click", () => {
+            clearInterval(a);
+
+        })
+    </script>
+</body>
+
+</html>

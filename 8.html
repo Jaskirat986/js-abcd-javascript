@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .container {
+            height: 75px;
+            width: 150px;
+            display: flex;
+            background-color: black;
+        }
+
+        .box {
+            height: 65px;
+            width: 40px;
+            background-color: gray;
+            color: white;
+            margin: 5px;
+            font-size: 30px;
+
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div id="box1" class="box"></div>
+        <div id="box2" class="box"></div>
+        <div id="box3" class="box"></div>
+    </div>
+    <script>
+        function clock() {
+            let box1 = document.getElementById('box1');
+            let box2 = document.getElementById('box2');
+            let box3 = document.getElementById('box3');
+            let a = new Date();
+            let b = a.getHours();
+            let c = a.getMinutes();
+            let d = a.getSeconds();
+            box1.innerHTML = b;
+            box2.innerHTML = c;
+            box3.innerHTML = d;
+        }
+        setInterval(clock, 1000);
+    </script>
+</body>
+
+</html>

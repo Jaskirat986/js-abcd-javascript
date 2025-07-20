@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+        }
+
+        .container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            background-color: beige;
+            padding: 20px;
+            border-radius: 10px;
+            gap: 20px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h1>Currency Converter</h1>
+
+        <input type="text" id="from" placeholder="Enter currency name(from)">
+
+        <input type="text" id="to" placeholder="Enter currency name(to)">
+        <input id="number" type="number" placeholder="Enter value">
+        <button id="btn">Convert</button>
+        <p id="p"></p>
+    </div>
+    <script>
+
+        let btn = document.getElementById("btn");
+        let p = document.getElementById('p');
+        btn.addEventListener('click', async () => {
+            let from = document.getElementById("from").value.toLowerCase();
+            let to = document.getElementById("to").value.toLowerCase();
+            let number = document.getElementById("number").value;
+            let response = await fetch(`https://cdn.jsdelivr.net/npm/@fawazahmed0/currency-api@latest/v1/currencies/${from}.json`)
+            let data = await response.json();
+            console.log(data);
+            console.log(to)
+            p.innerHTML = data[from][to] * number;
+        })
+    </script>
+</body>
+
+</html>

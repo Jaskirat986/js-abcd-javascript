@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <input type="text" id="input" placeholder="enter name">
+    <button id="button">search</button>
+    <button id="button2">Remove</button>
+    <div id="container"></div>
+
+    <script>
+        let div;
+        let img;
+        let button = document.getElementById("button")
+        let count = 0;
+        button.addEventListener("click", async () => {
+            div = document.getElementById("container");
+            let input = document.getElementById("input").value;
+            let response = await fetch(`https://pixabay.com/api/?key=50882716-cb3053f080db9518909a13fae&q=${input}&image_type=photo&pretty=true`)
+            let a = await response.json();
+            console.log(a);
+            for (let i = 0; i < 20; i++) {
+                img = document.createElement('img');
+                img.src = a.hits[i].webformatURL;
+                img.height = 400;
+                img.width = 400;
+                div.appendChild(img);
+                count++;
+            }
+
+
+        })
+
+        let button2 = document.getElementById("button2");
+        button2.addEventListener("click", () => {
+            document.getElementById("container").innerHTML = ""
+        })
+
+    </script>
+</body>
+
+</html>
