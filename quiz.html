@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+            background-color: black;
+            color: white;
+            display: flex;
+            height: 100vh;
+            align-items: center;
+            justify-content: center;
+        }
+
+        h1 {
+            text-align: center;
+        }
+
+        #container {
+            height: 400px;
+            width: 300px;
+            background-color: rgb(28, 26, 26);
+            display: flex;
+            flex-direction: column;
+            padding: 10px;
+            gap: 5px;
+            align-items: center;
+            justify-content: center;
+        }
+
+        button {
+            width: 100px;
+            background-color: rgb(58, 15, 231);
+            color: white;
+        }
+
+        .quiz {
+            background-color: aqua;
+            width: 280px;
+            color: black;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="container">
+        <h1>Quiz App</h1>
+        <div id="question"></div>
+        <div class="quiz"></div>
+        <div class="quiz"></div>
+        <div class="quiz"></div>
+        <div class="quiz"></div>
+        <div id="result"></div>
+        <button id="btn">Start quiz</button>
+    </div>
+    <script>
+        let sbtn = document.getElementById('btn');
+        let container = document.getElementById('container');
+        let question = document.getElementById('question');
+        let quiz = document.querySelectorAll('.quiz');
+        let result = document.getElementById('result');
+        let arr = [
+            "What is capital of France",
+            "What is capital of India",
+        ];
+        let count = 0;
+        let ocount = 0;
+        let o2count = 0;
+        let r = 0;
+        let ccount = 0;
+        let oarr = ['paris', 'delhi', 'dariaganj', 'timbaktoo']
+        let oarr2 = ['paris', 'delhi', 'bhaghalpur', 'mirzapur']
+        let carr = ['paris', 'delhi']
+        sbtn.addEventListener('click', () => {
+            question.innerHTML = arr[count];
+            sbtn.innerHTML = 'Next question';
+            result.innerHTML = '';
+            quiz.forEach((quizes) => {
+                quizes.addEventListener('click', () => {
+                    if (quizes.innerHTML === carr[count - 1]) {
+                        result.innerHTML = 'correct'
+
+                    }
+                    else {
+                        result.innerHTML = 'wrong'
+                    }
+
+
+                })
+                if (ocount < 4) {
+                    quizes.innerHTML = oarr[ocount];
+                    ocount++;
+                }
+                else {
+                    quizes.innerHTML = oarr2[o2count];
+                    o2count++;
+                }
+            })
+
+
+
+            count++;
+            if (count > 2) {
+                sbtn.innerHTML = 'Restart';
+                sbtn.addEventListener('click', () => {
+                    window.location.reload();
+                })
+                result.innerHTML = '';
+                quiz.forEach((quizes) => {
+                    question.innerHTML = '';
+                    quizes.innerHTML = '';
+                    quizes.classList.remove('quiz');
+
+                })
+            }
+        })
+
+    </script>
+</body>
+
+</html>
